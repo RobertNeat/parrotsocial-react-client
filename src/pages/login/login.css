@@ -1,0 +1,145 @@
+.login {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: xx-large;
+  height: 100vh;
+  padding: 10px;
+  background-color: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lgn-background-pane {
+  border-radius: 15px;
+  background-color: #d9d9d9;
+  padding: 20px;
+}
+
+.lgn-flex-row {
+  /*zmienić przy małych ekranach*/
+  display: flex;
+}
+
+.lgn-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lgn-parrot {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  font-size: xx-large;
+}
+
+.lgn-social {
+  background: -webkit-linear-gradient(left, #ff2e00, #ff9800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  position: relative;
+  left: 60px;
+}
+
+.lgn-parrot-image {
+  width: 300px;
+  height: auto;
+}
+
+.lgn-padding {
+  padding: 50px;
+}
+
+.lgn-form-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lgn-platform-logo {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  font-size: xx-large;
+  display: none;
+}
+
+.lgn-input {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid gray;
+  background-color: white;
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: large;
+  font-weight: normal;
+  font-family: "Inter", sans-serif;
+}
+
+.lgn-input:focus {
+  outline: none;
+}
+
+.lgn-button {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background: -webkit-linear-gradient(left, #ff2e00, #ff9800);
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: x-large;
+  font-family: "Inter", sans-serif;
+}
+
+.lgn-p {
+  font-size: large;
+}
+
+.lgn-a {
+  font-weight: bold;
+  background: -webkit-linear-gradient(left, #ff2e00, #ff9800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lgn-a:link,
+.lgn-a:visited,
+.lgn-a:hover,
+.lgn-a:active {
+  text-decoration: none;
+}
+
+/*responsive web design CSS styles overwrite*/
+
+@media only screen and (max-width: 720px) and (min-height: 750px) {
+  .lgn-flex-row {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .lgn-flex-row {
+    display: block;
+  }
+
+  .lgn-image-wrapper {
+    display: none;
+  }
+
+  .lgn-platform-logo {
+    display: inline;
+    margin-bottom: 20px;
+  }
+
+  .lgn-social {
+    position: inherit;
+  }
+
+  .lgn-padding {
+    padding: 20px;
+  }
+}

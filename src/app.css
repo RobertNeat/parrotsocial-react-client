@@ -1,0 +1,16 @@
+.inter-normal {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.inter-light {
+  font-family: "Inter", sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+}
+.inter-bold {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-style: normal;
+}
