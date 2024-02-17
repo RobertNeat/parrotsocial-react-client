@@ -1,7 +1,35 @@
 import "./login.css";
 import React from "react";
 
+import { useContext, useRef } from "react";
+import { loginCall } from "../../apiCalls";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
+import { CircularProgress } from "@mui/material";
+
 export default function Login() {
+  const email = useRef();
+  const password = useRef();
+  const history = useNavigate();
+
+  const { token, userId, isFetching, error, dispatch } =
+    useContext(AuthContext);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    loginCall(
+      { email: email.current.value, password: password.current.value },
+      dispatch
+    );
+  };
+
+  const handleRegisterClick = () => {
+    history("/register");
+  };
+
+  console.log("token:", token, "\n userId:", userId);
+
   return (
     <>
       <div className="login">
@@ -21,21 +49,32 @@ export default function Login() {
                 <span className="lgn-platform-logo">
                   Parrot <span className="lgn-social">Social</span>
                 </span>
-                <form>
+                <form onSubmit={handleClick}>
                   <input
                     type="text"
                     className="lgn-input"
-                    placeholder="email or username"
+                    placeholder="email"
+                    required
+                    ref={email}
                   ></input>
                   <br />
                   <input
                     type="password"
                     className="lgn-input"
                     placeholder="pass*word"
+                    required
+                    ref={password}
                   ></input>
                   <br />
-                  <button type="submit" className="lgn-button">
-                    LOGIN
+                  <button
+                    type="submit"
+                    className="lgn-button"
+                    disabled={isFetching}
+                  >
+                    {isFetching
+                      ? // <CircularProgress color="white" size="20px" />
+                        "loading"
+                      : "LOGIN"}
                   </button>
                   <br />
                 </form>
