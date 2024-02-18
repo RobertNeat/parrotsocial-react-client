@@ -1,5 +1,5 @@
 import "./login.css";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useContext, useRef } from "react";
 import { loginCall } from "../../apiCalls";
@@ -7,17 +7,19 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { CircularProgress } from "@mui/material";
 
+import { theme } from "./muiTheme";
+
 export default function Login() {
   const email = useRef();
   const password = useRef();
   const history = useNavigate();
+  const custom_theme = theme;
 
   const { token, userId, isFetching, error, dispatch } =
     useContext(AuthContext);
 
   const handleClick = (e) => {
     e.preventDefault();
-
     loginCall(
       { email: email.current.value, password: password.current.value },
       dispatch
@@ -25,10 +27,16 @@ export default function Login() {
   };
 
   const handleRegisterClick = () => {
-    history("/register");
+    history("/register_init");
   };
 
-  console.log("token:", token, "\n userId:", userId);
+  useEffect(() => {
+    if (error) {
+      alert("Login unsuccessfull!");
+    }
+  }, [error]);
+
+  //console.log("token:", token, "\n userId:", userId);
 
   return (
     <>
@@ -71,10 +79,16 @@ export default function Login() {
                     className="lgn-button"
                     disabled={isFetching}
                   >
-                    {isFetching
-                      ? // <CircularProgress color="white" size="20px" />
-                        "loading"
-                      : "LOGIN"}
+                    {isFetching ? (
+                      <CircularProgress
+                        theme={custom_theme}
+                        color="primary"
+                        size="30px"
+                      />
+                    ) : (
+                      //"loading"
+                      "LOGIN"
+                    )}
                   </button>
                   <br />
                 </form>
