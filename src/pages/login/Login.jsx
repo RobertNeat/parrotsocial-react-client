@@ -26,13 +26,16 @@ export default function Login() {
     );
   };
 
-  const handleRegisterClick = () => {
-    history("/register_init");
+  const handleRegisterClick = (e) => {
+    e.preventDefault();
+    history("/register");
   };
 
   useEffect(() => {
     if (error) {
       alert("Login unsuccessfull!");
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
     }
   }, [error]);
 

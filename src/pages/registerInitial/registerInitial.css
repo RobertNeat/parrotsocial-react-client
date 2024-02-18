@@ -10,13 +10,13 @@
   justify-content: center;
 }
 
-.background-pane {
+.reg-background-pane {
   border-radius: 15px;
   background-color: #d9d9d9;
   padding: 20px;
 }
 
-form {
+.reg-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ form {
   padding-bottom: 0px;
 }
 
-.input {
+.reg-input {
   width: 100%;
   border-radius: 10px;
   border: 1px solid gray;
@@ -36,7 +36,7 @@ form {
   font-family: "Inter", sans-serif;
 }
 
-.button {
+.reg-button {
   padding: 20px 60px;
   border: none;
   outline: none;
@@ -47,7 +47,7 @@ form {
   z-index: 1;
 }
 
-.button::before {
+.reg-button::before {
   content: "";
   position: absolute;
   top: 2px;
@@ -59,7 +59,7 @@ form {
   z-index: -1;
 }
 
-.button::after {
+.reg-button::after {
   content: attr(data);
   font-size: x-large;
   font-family: "Inter", sans-serif;
@@ -69,20 +69,20 @@ form {
   color: transparent;
 }
 
-.p {
+.reg-p {
   font-size: large;
 }
 
-.a {
+.reg-a {
   font-weight: bold;
   background: -webkit-linear-gradient(left, #ff2e00, #ff9800);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.a:link,
-.a:visited,
-.a:hover,
-.a:active {
+.reg-a:link,
+.reg-a:visited,
+.reg-a:hover,
+.reg-a:active {
   text-decoration: none;
 }

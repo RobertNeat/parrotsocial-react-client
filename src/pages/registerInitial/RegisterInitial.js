@@ -5,31 +5,39 @@ export default function RegisterInitial() {
   return (
     <>
       <div className="register">
-        <div className="background-pane">
-          <form>
-            <input type="text" className="input" placeholder="username"></input>
+        <div className="reg-background-pane">
+          <form className="reg-form">
+            <input
+              type="text"
+              className="reg-input"
+              placeholder="username"
+            ></input>
             <br />
-            <input type="email" className="input" placeholder="email"></input>
+            <input
+              type="email"
+              className="reg-input"
+              placeholder="email"
+            ></input>
             <br />
             <input
               type="password"
-              className="input"
+              className="reg-input"
               placeholder="pass*word"
             ></input>
             <br />
             <input
               type="password"
-              className="input"
+              className="reg-input"
               placeholder="retype pass*word"
             ></input>
             <br />
-            <button type="submit" data="REGISTER" className="button">
+            <button type="submit" data="REGISTER" className="reg-button">
               {/* REGISTER */}
             </button>
             <br />
-            <p className="p">
+            <p className="reg-p">
               Or{" "}
-              <a href="/login" className="a">
+              <a href="/login" className="reg-a">
                 LOGIN
               </a>{" "}
               if you have account

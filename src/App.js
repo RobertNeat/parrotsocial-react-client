@@ -1,6 +1,6 @@
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home";
-import RegisterInitial from "./pages/registerInitial/RegisterInitial";
+import RegisterInitial from "./pages/registerInitial/registerInitial";
 import RegisterDetail from "./pages/registerDetail/RegisterDetail";
 
 import { useContext } from "react";
@@ -29,6 +29,7 @@ function App() {
           path="/register"
           element={token ? <Navigate to="/" /> : <RegisterInitial />}
         />
+
         <Route exact path="/register/:userId" element={<RegisterDetail />} />
       </Routes>
     </Router>
