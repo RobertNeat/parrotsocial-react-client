@@ -98,7 +98,7 @@ export default function Login() {
                 <p className="lgn-p">
                   Don't have an account?
                   <br />
-                  <a href="/" className="lgn-a">
+                  <a href="/register" className="lgn-a">
                     Register{" "}
                   </a>
                   yourself now

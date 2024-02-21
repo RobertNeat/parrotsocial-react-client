@@ -18,19 +18,18 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={token ? <Home /> : <Login />} />
+        <Route exact path="/login" element={token ? <Home /> : <Login />} />
 
-        <Route
-          exact
-          path="/login"
-          element={token ? <Navigate to="/" /> : <Login />}
-        />
         <Route
           exact
           path="/register"
-          element={token ? <Navigate to="/" /> : <RegisterInitial />}
+          element={token ? <Home /> : <RegisterInitial />}
         />
-
-        <Route exact path="/register/:userId" element={<RegisterDetail />} />
+        <Route
+          exact
+          path="/register_continue/:userId"
+          element={<RegisterDetail />}
+        />
       </Routes>
     </Router>
   );
