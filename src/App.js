@@ -17,7 +17,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={token ? <Home /> : <Login />} />
+        <Route exact path="/register" element={<RegisterInitial />} />
+        <Route
+          exact
+          path="/register_continue/:userId"
+          element={<RegisterDetail />}
+        />
+        {/* <Route exact path="/" element={token ? <Home /> : <Login />} />
         <Route exact path="/login" element={token ? <Home /> : <Login />} />
 
         <Route
@@ -29,7 +35,7 @@ function App() {
           exact
           path="/register_continue/:userId"
           element={<RegisterDetail />}
-        />
+        /> */}
       </Routes>
     </Router>
   );
