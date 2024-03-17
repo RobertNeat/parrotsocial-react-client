@@ -14,10 +14,6 @@ export default function RegisterDetailLogic() {
   const [profileImgUrl, setProfileImgUrl] = useState("");
   const [coverImgUrl, setCoverImgUrl] = useState("");
 
-  //to set the image names in database
-  const [profileImgName, setProfileImgName] = useState("");
-  const [coverImgName, setCoverImgName] = useState("");
-
   //list of the defined cities
   const [cityList, setCityList] = useState([""]);
 
@@ -101,13 +97,13 @@ export default function RegisterDetailLogic() {
 
       if (endpoint === "profile") {
         const imageName = response.data.profilePicture;
-        setProfileImgName(imageName);
         //console.log("profile" + imageName);
+        return imageName;
       }
       if (endpoint === "cover") {
         const imageName = response.data.coverPicture;
-        setCoverImgName(imageName);
         //console.log("cover" + imageName);
+        return imageName;
       }
     } catch (err) {
       console.log(err);
@@ -116,15 +112,17 @@ export default function RegisterDetailLogic() {
 
   const addCityToDb = async (newCityName) => {
     try {
-      const city = {
-        name: newCityName,
-      };
-      const response = await axios.post(`${API_URL}/city`, city, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("new_city:" + response);
+      if (newCityName !== "inhabitancy" && newCityName !== "provenance") {
+        const city = {
+          name: newCityName,
+        };
+        const response = await axios.post(`${API_URL}/city`, city, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("new_city:" + response);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -133,14 +131,17 @@ export default function RegisterDetailLogic() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    var profile_filename = "";
+    var cover_filename = "";
+
     if (profileImgFile) {
       console.log("Sending profile image file");
-      await imageUpload("profile", profileImgFile);
+      profile_filename = await imageUpload("profile", profileImgFile);
     }
 
     if (coverImgFile) {
       console.log("Sending cover image file");
-      await imageUpload("cover", coverImgFile);
+      cover_filename = await imageUpload("cover", coverImgFile);
     }
 
     if (!cityList.includes(inhabitancy)) {
@@ -151,26 +152,66 @@ export default function RegisterDetailLogic() {
       await addCityToDb(provenance);
     }
 
-    /////////////////////wysłanie formularza
-
     try {
-      //sending the user data
       const user = {
         name: name,
         surname: surname,
-        description: description,
-        relationship_status: relationship,
-        inhabitancy: inhabitancy,
-        provenance: provenance,
-        education: education,
-        work: work,
+        description: "",
+        relationshipStatus: "",
+        inhabitancy: "",
+        provenance: "",
+        education: "",
+        work: "",
+        profilePicture: "",
+        coverPicture: "",
       };
+
+      if (description !== "") {
+        user.description = description;
+      }
+      if (relationship !== "relationship status") {
+        user.relationshipStatus = relationship;
+      }
+      if (inhabitancy !== "inhabitancy" && inhabitancy !== "inhabitancy") {
+        user.inhabitancy = inhabitancy;
+      }
+      if (provenance !== "provenance" && provenance !== "") {
+        user.provenance = provenance;
+      }
+      if (education !== "") {
+        user.education = education;
+      }
+      if (work !== "") {
+        user.work = work;
+      }
+      if (profile_filename !== "") {
+        user.profilePicture = profile_filename;
+      }
+      if (cover_filename !== "") {
+        user.coverPicture = cover_filename;
+      }
+
+      console.log(JSON.stringify(user));
+
+      try {
+        const response = await axios.put(`${API_URL}/user/${userId}`, user, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Form response:" + response);
+      } catch (err) {
+        console.log("Form submission error:" + err);
+      }
     } catch (err) {
-      console.log(err);
+      console.log("Data setting error:" + err);
     }
 
     //setting the profile and cover images names to db for retreival
 
+    /*
+      Attention!!! The form submitting cant retreive the userid and token from context api at the first time so the reload is needed
+    */
     console.log("Form submitted successfully!");
   };
 

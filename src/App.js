@@ -23,6 +23,8 @@ function App() {
           path="/register_continue/:userId"
           element={<RegisterDetail />}
         />
+
+        <Route exact path="/login" element={<Login />} />
         {/* <Route exact path="/" element={token ? <Home /> : <Login />} />
         <Route exact path="/login" element={token ? <Home /> : <Login />} />
 

@@ -161,7 +161,7 @@ export default function RegisterDetail() {
                     value={inhabitancy}
                     onChange={(e) => {
                       setInhabitancy(e.target.value);
-                      console.log("inhabitancy:" + e.target.value);
+                      //console.log("inhabitancy:" + e.target.value);
                     }}
                     onClick={() => {
                       setInhabitancy("");
@@ -182,7 +182,7 @@ export default function RegisterDetail() {
                     value={provenance}
                     onChange={(e) => {
                       setProvenance(e.target.value);
-                      console.log("provenance:" + e.target.value);
+                      //console.log("provenance:" + e.target.value);
                     }}
                     onClick={() => {
                       setProvenance("");
